@@ -207,6 +207,7 @@ class App {
     document.querySelectorAll(".workout").forEach((el) => el.remove());
     this._setLocalStorage();
     this._getLocalStorage();
+    this.#editOn = false;
   }
   async _fetchGeo(url) {
     try {
