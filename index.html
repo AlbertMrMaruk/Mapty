@@ -117,7 +117,7 @@
         </li> -->
       </ul>
 
-      <p class="copyright">
+      <!-- <p class="copyright">
         &copy; Copyright by
         <a
           class="twitter-link"
@@ -126,9 +126,28 @@
           >Jonas Schmedtmann</a
         >. Use for learning or your portfolio. Don't use to teach. Don't claim
         as your own.
-      </p>
+      </p> -->
+      <div class="form__row form__row--sort">
+        <label class="form__label form-label--sort">Sort by:</label>
+        <select class="form__input form__input--sort">
+          <option value="distance">Distance</option>
+          <option value="duration">Duration</option>
+          <option value="cadence">Cadence</option>
+          <option value="elevation">Elevation</option>
+          <option value="speed">Speed</option>
+          <option value="pace">Pace</option>
+        </select>
+        <select class="form__input form__input--sortT">
+          <option value="ascend">Ascend</option>
+          <option value="decend">Decend</option>
+        </select>
+        <a class="btn btn-apply">Apply</a>
+      </div>
+      <div class="btn-block">
+        <a href="#" class="btn" id="deleteAll">Delete All</a>
+        <a href="#" class="btn" id="moveMap">Move Map to Fit</a>
+      </div>
     </div>
-
     <div id="map"></div>
   </body>
 </html>
