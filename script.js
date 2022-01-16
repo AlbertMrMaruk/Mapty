@@ -21,8 +21,7 @@ class Workout {
   date = new Date();
   marker;
   id = (Date.now() + "").slice(-10);
-  constructor(location, coords, distance, duration) {
-    this.location = location;
+  constructor(coords, distance, duration) {
     this.coords = coords;
     this.distance = distance;
     this.duration = duration;
@@ -30,8 +29,8 @@ class Workout {
 }
 class Cycling extends Workout {
   name = "cycling";
-  constructor(location, coords, distance, duration, elevation) {
-    super(location, coords, distance, duration);
+  constructor(coords, distance, duration, elevation) {
+    super(coords, distance, duration);
     this.elevation = elevation;
     this.calcSpeed();
   }
@@ -42,8 +41,8 @@ class Cycling extends Workout {
 }
 class Running extends Workout {
   name = "running";
-  constructor(location, coords, distance, duration, cadence) {
-    super(location, coords, distance, duration);
+  constructor(coords, distance, duration, cadence) {
+    super(coords, distance, duration);
     this.cadence = cadence;
     this.calcPace();
   }
@@ -171,21 +170,25 @@ class App {
         coords = [this.#mapEvent.latlng.lat, this.#mapEvent.latlng.lng];
         console.log(`${coords}`);
         // https://geocode-maps.yandex.ru/1.x?geocode=${coords}&apikey=96cafcfd-8145-4734-83d6-6740e3820a53&sco=latlong&format=json
-        this._fetchGeo(`https://geocode.xyz/${coords}?geoit=json`).then(
-          (data) => {
-            workout = new Running(
-              `${data.region}, ${data.country}`,
-              coords,
-              distance,
-              duration,
-              cadence
-            );
-            this.#workouts.push(workout);
-            this._bindPopup(workout);
-            this._renderWorkoutList(workout);
-            console.log(data);
-          }
-        );
+        workout = new Running(coords, distance, duration, cadence);
+        this.#workouts.push(workout);
+        this._bindPopup(workout);
+        this._renderWorkoutList(workout);
+        // this._fetchGeo(`https://geocode.xyz/${coords}?geoit=json`).then(
+        //   (data) => {
+        //     workout = new Running(
+        //       `${data.region}, ${data.country}`,
+        //       coords,
+        //       distance,
+        //       duration,
+        //       cadence
+        //     );
+        //     this.#workouts.push(workout);
+        //     this._bindPopup(workout);
+        //     this._renderWorkoutList(workout);
+        //     console.log(data);
+        //   }
+        // );
       }
     }
     this._hideForm();
