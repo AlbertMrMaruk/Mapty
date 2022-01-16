@@ -332,21 +332,9 @@ class App {
     this.#workouts = item;
     this.#workouts = this.#workouts.map((el) => {
       if (el.name === "running") {
-        elNew = new Running(
-          el.location,
-          el.coords,
-          el.distance,
-          el.duration,
-          el.cadence
-        );
+        elNew = new Running(el.coords, el.distance, el.duration, el.cadence);
       } else {
-        elNew = new Cycling(
-          el.location,
-          el.coords,
-          el.distance,
-          el.duration,
-          el.elevation
-        );
+        elNew = new Cycling(el.coords, el.distance, el.duration, el.elevation);
       }
       [elNew.date, elNew.id] = [el.date, el.id];
       this._renderWorkoutList(elNew);
