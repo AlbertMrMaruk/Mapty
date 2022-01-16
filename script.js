@@ -168,7 +168,6 @@ class App {
         this._editCurrentWorkout(type, distance, duration, "cadence", cadence);
       } else {
         coords = [this.#mapEvent.latlng.lat, this.#mapEvent.latlng.lng];
-        console.log(`${coords}`);
         // https://geocode-maps.yandex.ru/1.x?geocode=${coords}&apikey=96cafcfd-8145-4734-83d6-6740e3820a53&sco=latlong&format=json
         workout = new Running(coords, distance, duration, cadence);
         this.#workouts.push(workout);
@@ -258,7 +257,7 @@ class App {
        <li class="workout workout--${workout.name}" data-id="${workout.id}">
           <h2 class="workout__title">${
             workout.name[0].toUpperCase() + workout.name.slice(1).toLowerCase()
-          } in ${workout.location} on ${Intl.DateTimeFormat("en-US", {
+          } on ${Intl.DateTimeFormat("en-US", {
       month: "long",
       day: "2-digit",
     }).format(new Date(workout.date))}</h2>
